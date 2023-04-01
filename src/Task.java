@@ -64,7 +64,7 @@ public abstract class Task {
  
     @Override
     public String toString() {
-        return getId()+getTitle() +"  "+ getDescription() +"  "+ getDateTime()+"  "+ (isNonPersonal()?"WORK":"PERSONAL");
+        return "ID задачи: "+ getId()+", название задачи: "+ getTitle() +" , описание задачи:  "+ getDescription() +" , время выполнения задачи: "+ getDateTime()+" , тип задачи: "+ (isNonPersonal()?"WORK":"PERSONAL");
     }
 
 

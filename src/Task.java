@@ -6,7 +6,8 @@ public abstract class Task {
     private String title;
     private String description;
     private boolean nonPersonal;
-    public static int id=0;
+    private static Integer counter = 1;
+    private final Integer id;
 
     private LocalDateTime dateTime;
 
@@ -15,7 +16,7 @@ public abstract class Task {
         this.description = description;
         this.nonPersonal = nonPersonal;
         this.dateTime = dateTime;
-        id++;
+        id=counter++;
     }
 
 
@@ -43,7 +44,7 @@ public abstract class Task {
         this.nonPersonal = nonPersonal;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -58,6 +59,7 @@ public abstract class Task {
     public boolean appearsIn(LocalDate s) {
         return s.equals(LocalDate.from(this.getDateTime()));
     }
+
 
  
     @Override

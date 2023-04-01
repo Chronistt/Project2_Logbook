@@ -13,7 +13,8 @@ public class TaskService {
     public static List<Task> listTask = new ArrayList<>();
 
      public static void addTask (Scanner scanner) {
-        boolean nonPersonal=false;
+        Task task;
+         boolean nonPersonal=false;
         scanner.nextLine();
         System.out.println("Название задачи");
         String title = scanner.nextLine();
@@ -38,10 +39,10 @@ public class TaskService {
         System.out.println("Введите дату дд.ММ.гггг ЧЧ:мм");
         scanner.nextLine();
 
-        createTask(scanner, title,description,nonPersonal,regularity);
+        listTask.add(createTask(scanner, title,description,nonPersonal,regularity));
     }
 
-    public static void createTask (Scanner scanner, String title, String description, boolean nonPersonal, int regularity) {
+    public static Task createTask (Scanner scanner, String title, String description, boolean nonPersonal, int regularity) {
        // try {
             LocalDateTime taskDate = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
             Task task;
@@ -51,7 +52,8 @@ public class TaskService {
             /*} catch (IncorrectArgumentException e) {
                 System.out.println(e.getMessage());
            }*/
-        }
+        return task;
+    }
     public static Task registerTask (int regularity, String title, String description, boolean nonPersonal, LocalDateTime localDateTime) {
          switch (regularity){
             case 0 : {

@@ -53,40 +53,42 @@ public class TaskService {
            }*/
         }
     public static Task registerTask (int regularity, String title, String description, boolean nonPersonal, LocalDateTime localDateTime) {
-        return switch (regularity){
+         switch (regularity){
             case 0 : {
                 OneTimeTask oneTimeTask = new OneTimeTask (title, description, nonPersonal, localDateTime);
                 listTask.add(oneTimeTask.getId(), oneTimeTask);
-                yield oneTimeTask;
+                 return oneTimeTask;
             }
             case 1 : {
                 DailyTask dailyTask = new DailyTask(title, description, nonPersonal, localDateTime);
                 listTask.add(dailyTask.getId(), dailyTask);
-                yield dailyTask;
+                return dailyTask;
             }
             case 2: {
                 WeeklyTask weeklyTask = new WeeklyTask(title, description, nonPersonal, localDateTime);
                 listTask.add(weeklyTask.getId(), weeklyTask);
-                yield weeklyTask;
+                return weeklyTask;
             }
 
             case 3: {
                 MonthlyTask monthlyTask = new MonthlyTask(title, description, nonPersonal, localDateTime);
                 listTask.add(monthlyTask.getId(), monthlyTask);
-                yield monthlyTask;
+                return monthlyTask;
             }
             case 4: {
                 YearlyTask yearlyTask = new YearlyTask(title, description, nonPersonal, localDateTime);
                 listTask.add(yearlyTask.getId(), yearlyTask);
-                yield yearlyTask;
+                return yearlyTask;
             }
             default: {
                 System.out.println("Введите номер от 0 до 4");
+                return null;
+
 
             }
 
 
-        };
+        }
     }
 
     public static Collection<Task> getAllByDate(Scanner scanner) {

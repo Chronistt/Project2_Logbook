@@ -13,7 +13,7 @@ public class TaskService {
     public static List<Task> listTask = new ArrayList<>();
 
      public static void addTask (Scanner scanner) {
-        boolean nonPersonal = false;
+        boolean nonPersonal=false;
         scanner.nextLine();
         System.out.println("Название задачи");
         String title = scanner.nextLine();
@@ -35,7 +35,7 @@ public class TaskService {
         }
         System.out.println("Введите повторяемость задачи: 0 - однократная, 1 - ежедневная, 2- еженедельная, 3 - ежемесячная, 4 - ежегодная");
         int regularity = scanner.nextInt();
-        System.out.println("Введите дату дд.ММ.гггг ЧЧ.мм");
+        System.out.println("Введите дату дд.ММ.гггг ЧЧ:мм");
         scanner.nextLine();
 
         createTask(scanner, title,description,nonPersonal,regularity);

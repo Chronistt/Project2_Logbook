@@ -58,28 +58,28 @@ public class TaskService {
          switch (regularity){
             case 0 : {
                 OneTimeTask oneTimeTask = new OneTimeTask (title, description, nonPersonal, localDateTime);
-                listTask.add(oneTimeTask.getId(), oneTimeTask);
+                //listTask.add(oneTimeTask.getId(), oneTimeTask);
                  return oneTimeTask;
             }
             case 1 : {
                 DailyTask dailyTask = new DailyTask(title, description, nonPersonal, localDateTime);
-                listTask.add(dailyTask.getId(), dailyTask);
+                // listTask.add(dailyTask.getId(), dailyTask);
                 return dailyTask;
             }
             case 2: {
                 WeeklyTask weeklyTask = new WeeklyTask(title, description, nonPersonal, localDateTime);
-                listTask.add(weeklyTask.getId(), weeklyTask);
+                // listTask.add(weeklyTask.getId(), weeklyTask);
                 return weeklyTask;
             }
 
             case 3: {
                 MonthlyTask monthlyTask = new MonthlyTask(title, description, nonPersonal, localDateTime);
-                listTask.add(monthlyTask.getId(), monthlyTask);
+                // listTask.add(monthlyTask.getId(), monthlyTask);
                 return monthlyTask;
             }
             case 4: {
                 YearlyTask yearlyTask = new YearlyTask(title, description, nonPersonal, localDateTime);
-                listTask.add(yearlyTask.getId(), yearlyTask);
+                // listTask.add(yearlyTask.getId(), yearlyTask);
                 return yearlyTask;
             }
             default: {
@@ -113,6 +113,7 @@ public class TaskService {
     }
 
    public static void removeTask (int id) {
+       System.out.println("Введите идентификатор задачи для удаления");
        listTask.removeIf(task1 -> task1.getId()==id);
    }
 

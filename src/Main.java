@@ -22,7 +22,7 @@ public class Main {
                         TaskService.removeTask(scanner.nextInt());
                         break;
                     case 3:
-                        TaskService.getAllByDate(scanner);
+                        System.out.println(TaskService.getAllByDate(scanner));
                         break;
                     case 0:
                     break;                     }

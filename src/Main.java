@@ -12,9 +12,14 @@ public class Main {
                 int menu = scanner.nextInt();
                 switch (menu) {
                     case 1:
-                        TaskService.addTask(scanner);
+                        try {
+                            TaskService.addTask(scanner);
+                        } catch (IncorrectArgumentException e) {
+                            System.out.println("Введи еще раз");;
+                        }
                         break;
                     case 2:
+                        System.out.println("Введите идентификатор задачи для удаления");
                         TaskService.removeTask(scanner.nextInt());
                         break;
                     case 3:

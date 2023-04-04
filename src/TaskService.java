@@ -12,46 +12,52 @@ import java.util.stream.Collectors;
 public class TaskService {
     public static List<Task> listTask = new ArrayList<>();
 
-     public static void addTask (Scanner scanner) {
-        Task task;
-         boolean nonPersonal=false;
-        scanner.nextLine();
-        System.out.println("Название задачи");
-        String title = scanner.nextLine();
-        System.out.println("Описание задачи");
-        String description = scanner.nextLine();
-        System.out.println("Тип задачи: 1 - рабочая. 2 - личная");
-        label:
+     public static void addTask (Scanner scanner) throws IncorrectArgumentException {
+         Task task;
+         boolean nonPersonal = false;
+         scanner.nextLine();
+         System.out.println("Название задачи");
+         String title = scanner.nextLine();
+         System.out.println("Описание задачи");
+         String description = scanner.nextLine();
+         System.out.println("Тип задачи: 1 - рабочая. 2 - личная");
+         label:
          switch (scanner.nextInt()) {
-             case 1:{
-                nonPersonal = true;
-            }
-             case 2:{
-                nonPersonal = false;
-            }
-             default : {
-                System.out.println("Введите еще раз");
-                break label;
-            }
-        }
-        System.out.println("Введите повторяемость задачи: 0 - однократная, 1 - ежедневная, 2- еженедельная, 3 - ежемесячная, 4 - ежегодная");
-        int regularity = scanner.nextInt();
+             case 1: {
+                 nonPersonal = true;
+                 break;
+             }
+             case 2: {
+                 nonPersonal = false;
+                 break;
+             }
+             default: {
+                 System.out.println("Введите еще раз");
+                 break label;
+             }
+         }
+         int regularity=10;
+         while (regularity<0||regularity>4) {
+             System.out.println("Введите повторяемость задачи: 0 - однократная, 1 - ежедневная, 2- еженедельная, 3 - ежемесячная, 4 - ежегодная");
+             regularity = scanner.nextInt();
+         }
         System.out.println("Введите дату дд.ММ.гггг ЧЧ:мм");
         scanner.nextLine();
 
         listTask.add(createTask(scanner, title,description,nonPersonal,regularity));
     }
 
-    public static Task createTask (Scanner scanner, String title, String description, boolean nonPersonal, int regularity) {
-       // try {
+    public static Task createTask (Scanner scanner, String title, String description, boolean nonPersonal, int regularity) throws IncorrectArgumentException {
+       if (regularity>4) {
+           throw new IncorrectArgumentException();
+       }
+
             LocalDateTime taskDate = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
             Task task;
-        //try {
+
                 task = registerTask(regularity, title, description, nonPersonal, taskDate);
                 System.out.println("Задача создана "+task);
-            /*} catch (IncorrectArgumentException e) {
-                System.out.println(e.getMessage());
-           }*/
+
         return task;
     }
     public static Task registerTask (int regularity, String title, String description, boolean nonPersonal, LocalDateTime localDateTime) {
@@ -113,7 +119,7 @@ public class TaskService {
     }
 
    public static void removeTask (int id) {
-       System.out.println("Введите идентификатор задачи для удаления");
+
        listTask.removeIf(task1 -> task1.getId()==id);
    }
 

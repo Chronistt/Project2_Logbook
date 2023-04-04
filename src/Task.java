@@ -6,7 +6,8 @@ public abstract class Task {
     private String title;
     private String description;
     private boolean nonPersonal;
-    public static int id=0;
+    private static Integer counter = 1;
+    private final Integer id;
 
     private LocalDateTime dateTime;
 
@@ -15,7 +16,7 @@ public abstract class Task {
         this.description = description;
         this.nonPersonal = nonPersonal;
         this.dateTime = dateTime;
-        id++;
+        id=counter++;
     }
 
 
@@ -43,7 +44,7 @@ public abstract class Task {
         this.nonPersonal = nonPersonal;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -59,10 +60,11 @@ public abstract class Task {
         return s.equals(LocalDate.from(this.getDateTime()));
     }
 
+
  
     @Override
     public String toString() {
-        return getId()+getTitle() +"  "+ getDescription() +"  "+ getDateTime()+"  "+ (isNonPersonal()?"WORK":"PERSONAL");
+        return "ID задачи: "+ getId()+", название задачи: "+ getTitle() +" , описание задачи:  "+ getDescription() +" , время выполнения задачи: "+ getDateTime()+" , тип задачи: "+ (isNonPersonal()?"WORK":"PERSONAL");
     }
 
 

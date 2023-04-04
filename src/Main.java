@@ -1,14 +1,6 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Task task = new WeeklyTask(" 1 task ", "write a book", true, LocalDateTime.now());
-        Task task1 = new WeeklyTask(" 2 task ", "write a book", true, LocalDateTime.now());
-        System.out.println(task);
-        System.out.println(task1);
-
 
         Scanner scanner = new Scanner(System.in);
         printMenu();
@@ -20,13 +12,18 @@ public class Main {
                 int menu = scanner.nextInt();
                 switch (menu) {
                     case 1:
-                        TaskService.addTask(scanner);
+                        try {
+                            TaskService.addTask(scanner);
+                        } catch (IncorrectArgumentException e) {
+                            System.out.println("Введи еще раз");;
+                        }
                         break;
                     case 2:
-                        TaskService.removeTask(scanner);
+                        System.out.println("Введите идентификатор задачи для удаления");
+                        TaskService.removeTask(scanner.nextInt());
                         break;
                     case 3:
-                        TaskService.getAllByDate(scanner);
+                        System.out.println(TaskService.getAllByDate(scanner));
                         break;
                     case 0:
                     break;                     }
